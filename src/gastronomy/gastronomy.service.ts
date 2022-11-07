@@ -51,16 +51,6 @@ export class GastronomyService {
         return await this.gastronomyRepository.save(persistedGastronomy);
     }
 
-    async update2(id: string, gastronomy: GastronomyEntity): Promise<GastronomyEntity> {
-        const persistedGastronomy: GastronomyEntity = await this.gastronomyRepository.findOne({where:{id}});
-        if (!persistedGastronomy)
-          throw new BusinessLogicException("The gastronomy with the given id was not found", BusinessError.NOT_FOUND);
-       
-        Object.assign(persistedGastronomy, gastronomy);
-       
-        return await this.gastronomyRepository.save(persistedGastronomy);
-    }
-
     async delete(id: string) {
         const gastronomy: GastronomyEntity = await this.gastronomyRepository.findOne({where:{id}});
         if (!gastronomy)
